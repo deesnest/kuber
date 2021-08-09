@@ -26,8 +26,7 @@ pipeline {
                 sudo docker images
                 sudo docker login --username deepatp --password rathna4582
                 sudo docker push deepatp/app:1.0
-    
-                   
+                      
                  '''
                
               }
