@@ -30,11 +30,23 @@ pipeline {
                  '''
              }
         }
+        
+        parallel{
+           stage('pararun'){
+              agent {label "kubeagent"}
+                  steps {
+                     sh '''
+                         sudo docker run deepatp/app:1.0
+                      '''
+                     }
+                   }
+                   }                   
+        
         stage('buildcluster') {
         agent {label "kubeagent"}
             steps {
             sh '''
-                 sudo docker run deepatp/app:1.0
+                 
                cd /home/ubuntu/app/k8s
                 sudo kubectl apply -f deployment.yaml
                 sudo kubectl get deploy
