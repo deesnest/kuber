@@ -1,5 +1,4 @@
 FROM python
-RUN sudo apt install python3-venv -y
 WORKDIR /app
 RUN python3 -m venv venv
 RUN source venv/bin/activate
