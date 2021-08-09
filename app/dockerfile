@@ -1,4 +1,4 @@
-FROM python
+FROM tomaszguzialek/flask-api
 WORKDIR /app
 RUN python3 -m venv venv
 RUN sudo apt install python3-flask
