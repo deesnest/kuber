@@ -1,0 +1,49 @@
+pipeline {
+    agent none
+   stages {
+     stage('gitinit') {
+     agent {label "kubeagent"}
+            steps {
+                sh '''
+                cd /home/ubuntu/workspace/pythonproject
+                if [ ! -f .git ] && [ ! -d pythonproject]
+                then
+                git init
+                git clone https://github.com/deesnest/DeclarativePipelines.git
+                fi
+                  
+                 '''
+             }
+        }
+                        
+        stage('buildimage') {
+        agent {label "kubeagent"}
+            steps {
+            sh '''
+               cd /home/ubuntu/workspace/pythonproject
+                sudo docker build -t my-python:latest /home/ubuntu/workspace/pythonproject
+                sudo docker tag my-python:latest deepatp/pythonproject:1.0
+                sudo docker images
+                sudo docker login --username deepatp --password rathna4582
+                sudo docker push deepatp/pythonproject:1.0
+    
+                   
+                 '''
+               
+              }
+        }
+        stage('buildcluster') {
+        agent {label "kubeagent"}
+            steps {
+            sh '''
+               cd /home/ubuntu/workspace/k8s
+                sudo kubectl apply -f deployment.yaml
+                   
+                 '''
+               
+              }
+        }
+       }
+       }
+
+ 
