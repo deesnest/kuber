@@ -30,7 +30,7 @@ pipeline {
                  '''
              }
         }
-        
+        stage('parallel') {
         parallel {
         stage('buildrun') {
          agent {label "kubeagent"}
@@ -53,6 +53,7 @@ pipeline {
                 sudo kubectl get pods
                    
                  '''
+              }
               }
               }
            }
