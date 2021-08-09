@@ -1,11 +1,5 @@
 FROM tomaszguzialek/flask-api
 WORKDIR /app
-RUN python3 -m venv venv
-RUN sudo apt install python3-flask
-RUN pip install Flask 
-RUN python -m flask --version
-RUN export FLASK_APP=app.py
-RUN flask run
 COPY . /app
 RUN pip install -r requirements.txt 
 ENTRYPOINT python app.py
