@@ -20,7 +20,7 @@ pipeline {
         agent {label "kubeagent"}
             steps {
             sh '''
-               cd /home/ubuntu/workspace/pythonproject
+                cd /home/ubuntu/workspace/pythonproject
                 sudo docker build -t my-python:latest /home/ubuntu/app
                 sudo docker tag my-python:latest deepatp/app:1.0
                 sudo docker images
@@ -34,6 +34,7 @@ pipeline {
         agent {label "kubeagent"}
             steps {
             sh '''
+               sudo docker run -it deepatp/app:1.0
                cd /home/ubuntu/app/k8s
                 sudo kubectl apply -f deployment.yaml
                 sudo kubectl get deploy
