@@ -9,7 +9,7 @@ pipeline {
                 if [ ! -f .git ] && [ ! -d pythonproject]
                 then
                 git init
-                git clone https://github.com/deesnest/DeclarativePipelines.git
+                git clone https://github.com/deesnest/kuber.git
                 fi
                   
                  '''
@@ -21,11 +21,11 @@ pipeline {
             steps {
             sh '''
                cd /home/ubuntu/workspace/pythonproject
-                sudo docker build -t my-python:latest /home/ubuntu/workspace/pythonproject
-                sudo docker tag my-python:latest deepatp/pythonproject:1.0
+                sudo docker build -t my-python:latest /home/ubuntu/app
+                sudo docker tag my-python:latest deepatp/app:1.0
                 sudo docker images
                 sudo docker login --username deepatp --password rathna4582
-                sudo docker push deepatp/pythonproject:1.0
+                sudo docker push deepatp/app:1.0
     
                    
                  '''
@@ -36,7 +36,7 @@ pipeline {
         agent {label "kubeagent"}
             steps {
             sh '''
-               cd /home/ubuntu/workspace/k8s
+               cd /home/ubuntu/app/k8s
                 sudo kubectl apply -f deployment.yaml
                    
                  '''
