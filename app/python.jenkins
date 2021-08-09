@@ -31,7 +31,17 @@ pipeline {
              }
         }
         
-                                            
+        parallel {
+        stage('buildrun') {
+         agent {label "kubeagent"}
+            steps {
+            sh '''
+                sudo docker run deepatp/app:1.0
+                
+               '''
+              }
+             }
+                                                         
        stage('buildcluster') {
         agent {label "kubeagent"}
             steps {
@@ -43,6 +53,7 @@ pipeline {
                 sudo kubectl get pods
                    
                  '''
+              }
               }
            }
        }
