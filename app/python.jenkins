@@ -38,6 +38,8 @@ pipeline {
             sh '''
                cd /home/ubuntu/app/k8s
                 sudo kubectl apply -f deployment.yaml
+                sudo kubectl get deploy
+                sudo kubectl get pods
                    
                  '''
                
