@@ -28,8 +28,7 @@ pipeline {
                 sudo docker push deepatp/app:1.0
                       
                  '''
-               
-              }
+             }
         }
         stage('buildcluster') {
         agent {label "kubeagent"}
@@ -41,7 +40,6 @@ pipeline {
                 sudo kubectl get pods
                    
                  '''
-               
               }
         }
        }
