@@ -40,7 +40,7 @@ pipeline {
                       '''
                      }
                    }
-                   }                   
+                                    
         
         stage('buildcluster') {
         agent {label "kubeagent"}
@@ -54,6 +54,7 @@ pipeline {
                    
                  '''
               }
+        }
         }
        }
        }
