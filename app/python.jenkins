@@ -31,7 +31,6 @@ pipeline {
              }
         }
         
-        parallel {
            stage('pararun') {
               agent {label "kubeagent"}
                   steps {
@@ -54,8 +53,7 @@ pipeline {
                    
                  '''
               }
-        }
-        }
+           }
        }
        }
 
