@@ -1,7 +1,6 @@
 FROM python
 WORKDIR /app
 RUN python3 -m venv venv
-RUN source venv/bin/activate
 RUN pip install Flask -y
 RUN python -m flask --version
 RUN export FLASK_APP=app.py
