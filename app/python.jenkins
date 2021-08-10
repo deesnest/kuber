@@ -30,17 +30,7 @@ pipeline {
                  '''
              }
         }
-        stage('parallel') {
-        parallel {
-        stage('buildrun') {
-         agent {label "kubeagent"}
-            steps {
-            sh '''
-                sudo docker run my-python:latest
-                
-               '''
-              }
-             }
+              
                                                          
        stage('buildcluster') {
         agent {label "kubeagent"}
@@ -53,9 +43,7 @@ pipeline {
                 sudo kubectl get pods
                    
                  '''
-              }
-              }
-              }
+                }
            }
        }
        }
